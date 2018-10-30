@@ -11,8 +11,17 @@
             <Button Margin="5" Width="100" Content="Delete Rows" Click="DeleteRowsButton_Click"/>
         </StackPanel>
         <Border DockPanel.Dock="Top" BorderThickness="1" BorderBrush="{Binding BorderBrush, ElementName=dataGrid}">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-                <DataGrid x:Name="dataGrid" BorderThickness="0" Background="White" HorizontalScrollBarVisibility="Disabled">
+            <ScrollViewer VerticalScrollBarVisibility="Disabled">
+                <ScrollViewer.Style>
+                    <Style TargetType="ScrollViewer">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasItems, ElementName=dataGrid}" Value="False">
+                                <Setter Property="HorizontalScrollBarVisibility" Value="Auto"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ScrollViewer.Style>
+                <DataGrid x:Name="dataGrid" BorderThickness="0" Background="White" HorizontalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Column0" Binding="{Binding Column0}"/>
                         <DataGridTextColumn Header="Column1" Binding="{Binding Column1}"/>
