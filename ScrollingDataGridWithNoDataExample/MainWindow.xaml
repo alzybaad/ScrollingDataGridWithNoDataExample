@@ -4,14 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Scrolling DataGrid with no data example" Height="250" Width="400">
+        Title="Scrolling DataGrid with no data example" Height="250" Width="400" Loaded="Window_Loaded">
     <DockPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Margin="5" Width="100" Content="Add Rows" Click="AddRowsButton_Click"/>
             <Button Margin="5" Width="100" Content="Delete Rows" Click="DeleteRowsButton_Click"/>
         </StackPanel>
         <Border DockPanel.Dock="Top" BorderThickness="1" BorderBrush="{Binding BorderBrush, ElementName=dataGrid}">
-            <ScrollViewer VerticalScrollBarVisibility="Disabled">
+            <ScrollViewer x:Name="scrollViewer" VerticalScrollBarVisibility="Disabled">
                 <ScrollViewer.Style>
                     <Style TargetType="ScrollViewer">
                         <Style.Triggers>

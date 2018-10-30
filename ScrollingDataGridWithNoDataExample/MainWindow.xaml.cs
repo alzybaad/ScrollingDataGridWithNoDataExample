@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace ScrollingDataGridWithNoDataExample
 {
@@ -34,9 +38,60 @@ namespace ScrollingDataGridWithNoDataExample
 
         private const int rowCount = 1000;
 
+        private ScrollViewer dataGridScrollViewer;
+        private double scrollOffset;
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            dataGridScrollViewer = GetChild<ScrollViewer>(dataGrid, "DG_ScrollViewer");
+
+            DependencyPropertyDescriptor.FromProperty(DataGrid.HasItemsProperty, typeof(DataGrid)).AddValueChanged(dataGrid, DataGrid_HasItemsChanged);
+
+            scrollViewer.ScrollChanged += ScrollViewer_ScrollChanged;
+            dataGridScrollViewer.ScrollChanged += ScrollViewer_ScrollChanged;
+        }
+
+        private void DataGrid_HasItemsChanged(object sender, EventArgs e)
+        {
+            (dataGrid.HasItems ? dataGridScrollViewer : scrollViewer).ScrollToHorizontalOffset(scrollOffset);
+        }
+
+        private void ScrollViewer_ScrollChanged(object sender, EventArgs e)
+        {
+            if (sender == scrollViewer && !dataGrid.HasItems)
+            {
+                scrollOffset = scrollViewer.HorizontalOffset;
+            }
+            else if (sender == dataGridScrollViewer && dataGrid.HasItems)
+            {
+                scrollOffset = dataGridScrollViewer.HorizontalOffset;
+            }
+        }
+
+        private T GetChild<T>(DependencyObject parent, string name) where T : DependencyObject
+        {
+            var count = VisualTreeHelper.GetChildrenCount(parent);
+            for (var i = 0; i < count; ++i)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                if (child.GetValue(Control.NameProperty) as string == name)
+                {
+                    return child as T;
+                }
+
+                child = GetChild<T>(child, name);
+                if (child != null)
+                {
+                    return child as T;
+                }
+            }
+
+            return null;
         }
 
         private void AddRowsButton_Click(object sender, RoutedEventArgs e)
