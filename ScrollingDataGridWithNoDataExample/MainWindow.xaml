@@ -1,0 +1,28 @@
+﻿<Window x:Class="ScrollingDataGridWithNoDataExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Scrolling DataGrid with no data example" Height="250" Width="400">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="5" Width="100" Content="Add Rows" Click="AddRowsButton_Click"/>
+            <Button Margin="5" Width="100" Content="Delete Rows" Click="DeleteRowsButton_Click"/>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" DockPanel.Dock="Top" Background="White">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Column0" Binding="{Binding Column0}"/>
+                <DataGridTextColumn Header="Column1" Binding="{Binding Column1}"/>
+                <DataGridTextColumn Header="Column2" Binding="{Binding Column2}"/>
+                <DataGridTextColumn Header="Column3" Binding="{Binding Column3}"/>
+                <DataGridTextColumn Header="Column4" Binding="{Binding Column4}"/>
+                <DataGridTextColumn Header="Column5" Binding="{Binding Column5}"/>
+                <DataGridTextColumn Header="Column6" Binding="{Binding Column6}"/>
+                <DataGridTextColumn Header="Column7" Binding="{Binding Column7}"/>
+                <DataGridTextColumn Header="Column8" Binding="{Binding Column8}"/>
+                <DataGridTextColumn Header="Column9" Binding="{Binding Column9}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>
