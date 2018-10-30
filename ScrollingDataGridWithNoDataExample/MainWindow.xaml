@@ -11,7 +11,7 @@
             <Button Margin="5" Width="100" Content="Delete Rows" Click="DeleteRowsButton_Click"/>
         </StackPanel>
         <Border DockPanel.Dock="Top" BorderThickness="1" BorderBrush="{Binding BorderBrush, ElementName=dataGrid}">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <DataGrid x:Name="dataGrid" BorderThickness="0" Background="White" HorizontalScrollBarVisibility="Disabled">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Column0" Binding="{Binding Column0}"/>
